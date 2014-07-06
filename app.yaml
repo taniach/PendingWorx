@@ -1,0 +1,24 @@
+application: what-2-do
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: true
+
+
+handlers:
+
+- url: /
+  script: main.application
+  
+- url: /.*
+  script: main.application
+  login: required
+
+- url: /templates
+  static_dir: templates
+
+libraries:
+- name: webapp2
+  version: latest
+- name: jinja2
+  version: latest

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>What 2 do | Home</title>
+	<script type="text/javascript">
+		function ConfirmDelete()
+		{
+		  var x = confirm("Are you sure you want to delete?");
+		  if (x)
+		  	return true;
+		  else
+		  	return false;
+		}
+	</script>
+</head>
+<body>
+	<p>Home</p>
+	<p>{{ user_mail }}</p>
+	<a href="{{ logout }}">Logout</a>
+
+	{% for task in agenda %}
+
+	<p>{{ task.task_id }}. {{ task.description }} 
+		<form onsubmit="return ConfirmDelete()" action="/delete" method="post">
+			<input type="hidden" value="{{ task.task_id }}" name="id_to_delete"/>
+			<input type="submit" value="Delete" />
+		</form>
+	</p>
+
+	{% endfor %}
+
+	<form action="/addtask" method="post">
+		<div>
+			<textarea name="desc" rows="7" cols="30"></textarea>
+		</div>
+      	<div>
+      		<input type="submit" value="Add task">
+      	</div>
+	</form>
+</body>
+</html>
