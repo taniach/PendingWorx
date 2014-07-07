@@ -1,0 +1,46 @@
+#maincontainer {
+	margin-top: 100px;
+}
+
+.homepanel {
+	margin-left: 30px;
+	color: white;
+	font-weight: bolder;
+	font-size: 1.3em;
+}
+
+form {
+	display: inline-block;
+}
+
+li.medium-panel {
+	color: black;
+}
+
+.taskpanels {
+	margin-right: 50px;
+	margin-bottom: 50px;
+}
+
+.bg1 {
+	float: right;
+	position: relative;
+	top: -10px;
+}
+
+.optionbtns2 {
+	float: right;
+}
+
+#uldone {
+	list-style-type: none;
+}
+
+#lidone {
+	margin-left: -5px;
+}
+
+h1 {
+	margin-top: -50px;
+	padding: 0px 0px 50px 50px;
+}

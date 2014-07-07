@@ -18,4 +18,10 @@ indexes:
 - kind: Task
   ancestor: yes
   properties:
+  - name: priority
+  - name: create_date
+
+- kind: Task
+  ancestor: yes
+  properties:
   - name: task_id

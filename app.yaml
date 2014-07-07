@@ -7,6 +7,22 @@ threadsafe: true
 
 handlers:
 
+- url: /stylesheets
+  static_dir: stylesheets
+
+- url: /images
+  static_dir: images
+
+- url: /scripts
+  static_dir: scripts
+
+- url: /journal
+  static_dir: journal
+
+# Twitter Bootstrap
+- url: /bootstrap
+  static_dir: bootstrap
+
 - url: /
   script: main.application
   
@@ -14,8 +30,6 @@ handlers:
   script: main.application
   login: required
 
-- url: /templates
-  static_dir: templates
 
 libraries:
 - name: webapp2
