@@ -2,102 +2,129 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>To do list | Add</title>
+  <title>PendingWorx | Edit</title>
 
-	<link rel="stylesheet" type="text/css" href="../stylesheets/mysheet.css">
+  <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css" />
 
-	<!-- Bootstrap -->
-    <link href="../journal/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="../stylesheets/mysheet.css">
+
+  <!-- Bootstrap -->
+  <link href="../journal/bootstrap.min.css" rel="stylesheet">
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="../bootstrap/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="../scripts/jquery-ui/jquery-ui.min.css">
+  <script src="../scripts/jquery-ui/external/jquery/jquery.js"></script>
+  <script src="../scripts/jquery-ui/jquery-ui.min.js"></script>
+
+  <script>
+  $(function() {
+    $( "#datepicker" ).datepicker({ dateFormat: 'dd-M-yy' });
+  });
+  </script>
+
 </head>
 <body>
 
 	<!-- Fixed navbar -->
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand">To Do List</a>
-        </div>
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="/home">Home</a></li>
-            <li><a href="/addtask">Add Task</a></li>   
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a>{{ user_mail }}</a></li>
-            <li><a href="{{ logout }}">Logout</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand">To Do List</a>
       </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="/home"><i class="fa fa-home"></i> Home</a></li>
+          <li><a href="/addtask"><i class="fa fa-plus"></i> Add Task</a></li>   
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a>{{ user_mail }}</a></li>
+          <li><a href="{{ logout }}"><i class="fa fa-sign-out"></i> Logout</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
     </div>
+  </div>
 
 
 
-    <div class="container" id="maincontainer">
+  <div class="container" id="maincontainer">
 
 
-	<form action="/edit" method="post" class="form-horizontal">
-		<fieldset>
+   <form action="/edit" method="post" class="form-horizontal">
+    <fieldset>
     	<legend>Edit a task</legend><br>
 
     	<div class="form-group">
 
-      	<label for="inputtitle" class="col-lg-2 control-label">Title</label>
-	      <div class="col-lg-10">
-	        <input type="text" class="form-control" name="title" id="inputEmail" maxlength="500" value="{{ task_to_edit.title }}" required>
-	      </div>
+       <label for="inputtitle" class="col-lg-2 control-label">Title</label>
+       <div class="col-lg-10">
+         <input type="text" class="form-control" name="title" id="inputEmail" maxlength="70" value="{{ task_to_edit.title }}" required>
+       </div>
 
-    	</div>
+     </div>
 
-    	<div class="form-group">
-	      <label for="textArea" class="col-lg-2 control-label">Description</label>
+     <div class="form-group">
+       <label for="textArea" class="col-lg-2 control-label">Description</label>
 
-	      <div class="col-lg-10">
-	        <textarea class="form-control" rows="4" cols="60" name="desc" id="textArea">{{ task_to_edit.description }}</textarea>
-	      </div>
+       <div class="col-lg-10">
+         <textarea class="form-control" rows="4" cols="60" name="desc" id="textArea" placeholder="Enter a description here...">{{ task_to_edit.description }}</textarea>
+       </div>
 
-	    </div>
+     </div>
 
-	    <div class="form-group">
-	      <label for="select" class="col-lg-2 control-label">Priority</label>
-	      <div class="col-lg-10">
-	     
-	        <select name="priority" class="form-control" id="select">
-				<option value="1" {% if task_to_edit.priority == 1 %}selected{% endif %}>High</option>
-				<option value="2" {% if task_to_edit.priority == 2 %}selected{% endif %}>Medium</option>
-				<option value="3" {% if task_to_edit.priority == 3 %}selected{% endif %}>Low</option>
-			</select>
+     <div class="form-group">
+       <label for="select" class="col-lg-2 control-label">Priority</label>
+       <div class="col-lg-10">
 
-	      </div>
-	    </div> <br>
+         <select name="priority" class="form-control" id="select">
+          <option value="1" {% if task_to_edit.priority == 1 %}selected{% endif %}>High</option>
+          <option value="2" {% if task_to_edit.priority == 2 %}selected{% endif %}>Medium</option>
+          <option value="3" {% if task_to_edit.priority == 3 %}selected{% endif %}>Low</option>
+        </select>
 
-	    <div class="form-group">
-	      <div class="col-lg-10 col-lg-offset-2">
-	      	<input type="hidden" value="{{ task_to_edit.task_id }}" name="id_to_edit"/>
-	        <input type="reset" value="Reset" class="btn btn-default"/>
-      		<input type="submit" value="Save changes" class="btn btn-primary"/>
-	      </div>
-	    </div>
+      </div>
+    </div> 
 
-      </fieldset>
+    <div class="form-group">
 
-	</form>
+       <label for="inputdate" class="col-lg-2 control-label">Due date</label>
+       <div class="col-lg-10">
+         <input type="text"  class="form-control" id="datepicker" name="duedate" {% if task_to_edit.due_date %}value={{ task_to_edit.due_date.strftime('%d-%b-%Y') }}{% endif %}>
+         <span class="help-block"><em>Leave blank if no due date</em></span>
+       </div>
+
+     </div>
+
+    
+    <br>
+
+    <div class="form-group">
+     <div class="col-lg-10 col-lg-offset-2">
+      <input type="hidden" value="{{ task_to_edit.task_id }}" name="id_to_edit"/>
+      <input type="reset" value="Reset" class="btn btn-default"/>
+      <input type="submit" value="Save changes" class="btn btn-primary"/>
+    </div>
+  </div>
+
+</fieldset>
+
+</form>
 
 
 </div><!-- /.container -->
 
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="../bootstrap/js/bootstrap.min.js"></script>
 
 </body>
 </html>
