@@ -1,4 +1,4 @@
-application: what-2-do
+application: pendingworx
 version: 1
 runtime: python27
 api_version: 1
