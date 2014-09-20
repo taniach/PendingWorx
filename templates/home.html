@@ -2,166 +2,303 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>To do list | Home</title>
+	<title>PendingWorx | Home</title>
+
+	<link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css" />
 
 	<link rel="stylesheet" type="text/css" href="../stylesheets/mysheet.css">
+	<link href='http://fonts.googleapis.com/css?family=Alegreya:700' rel='stylesheet' type='text/css'>
 
 	<!-- Bootstrap -->
-    <link href="../journal/bootstrap.min.css" rel="stylesheet">
+	<link href="../journal/bootstrap.min.css" rel="stylesheet">
+	<link href="../journal/bootstrap-theme.min.css" rel="stylesheet">
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="../bootstrap/js/bootstrap.min.js"></script>
+
+	<script>
+	$(function () {
+
+		var active = true;
+
+		$('#collapse-init').click(function () {
+			if (active) {
+				active = false;
+				$('.panel-collapse').collapse('show');
+				$('.panel-title').attr('data-toggle', '');
+				$(this).text('Hide details');
+				$('.icon1').removeClass('fa-chevron-circle-right').addClass('fa-chevron-circle-down');
+			} else {
+				active = true;
+				$('.panel-collapse').collapse('hide');
+				$('.panel-title').attr('data-toggle', 'collapse');
+				$(this).text('See details');
+				$('.icon1').removeClass('fa-chevron-circle-down').addClass('fa-chevron-circle-right');
+			}
+		});
+
+
+	});
+	</script>
 
 	<script type="text/javascript">
-		function ConfirmDelete()
-		{
-		  var x = confirm("Are you sure you want to delete?");
-		  if (x)
-		  	return true;
-		  else
-		  	return false;
-		}
+	function ConfirmDelete()
+	{
+		var x = confirm("Are you sure you want to delete?");
+		if (x)
+			return true;
+		else
+			return false;
+	}
+
+	
 	</script>
 </head>
 <body>
 
-	    <!-- Fixed navbar -->
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand">To Do List</a>
-        </div>
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="/home">Home</a></li>
-            <li><a href="/addtask">Add Task</a></li>   
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a>{{ user_mail }}</a></li>
-            <li><a href="{{ logout }}">Logout</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </div>
-
-    <div class="container" id="maincontainer">
-
-    	<h1>Things to do</h1>
-      
-	<ol>
-	{% for task in agenda %}
-	<div class="taskpanels">
-
-	<div class="panel {% if task.priority == 1 %}panel-danger{% elif task.priority == 2 %}panel-warning{% else %}panel-info{% endif %}">
-
-
-		<div class="panel-heading">
-    		<li class="homepanel" {% if task.priority == 2 %}style="color: black"{% endif %}><h3 class="panel-title pt1" style="{% if task.priority == 2 %}color: black;{% endif %}font-size:1.2em">{{ task.title }}</h3>
-<!--
-    		<div class="btn-group bg1">
-		      <button {% if task.priority == 2 %}style="color: black"{% endif %} type="button" class="btn {% if task.priority == 1 %}btn-danger{% elif task.priority == 2 %}btn-warning{% else %}btn-info{% endif %} dropdown-toggle" data-toggle="dropdown" >
-		        Options
-		        <span class="caret"></span>
-		      </button>
-		      <ul class="dropdown-menu">
-		        <li>
-		        	<a><form action="/edit" method="get">
-					<input type="hidden" value="{{ task.task_id }}" name="id_to_edit"/>
-					<input type="submit" value="Edit" class="optionbtn"/>
-					</form></a>
-				</li>
-		        <li><a href="#">Dropdown link</a></li>
-		        
-		       </ul>
-		    </div>-->
-		    </li>
-  		</div>
-
-  		<div class="panel-body">
-
-  			<h4>
-  				Priority:
-
-				{% if task.priority == 1 %} High {% elif task.priority == 2 %} Medium {% else %} Low {% endif %}
-			</h4> 
-			<br/>
-			<h4>{{ task.description }}</h4>
-
-			<div class="optionbtns2">
-
-				<form action="/edit" method="get">
-					<input type="hidden" value="{{ task.task_id }}" name="id_to_edit"/>
-					<input type="submit" value="Edit" class="btn btn-primary btn-sm"/>
-				</form>
-
-				<form onsubmit="return ConfirmDelete()" action="/delete" method="post">
-					<input type="hidden" value="{{ task.task_id }}" name="id_to_delete"/>
-					<input type="submit" value="Delete" class="btn btn-default btn-sm"/>
-				</form>
-
-				<form action="/done" method="post">
-					<input type="hidden" value="{{ task.task_id }}" name="id_done"/>
-					<input type="submit" value="Done" class="btn btn-success btn-sm"/>
-				</form>
+	<!-- Fixed navbar -->
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand">To Do List</a>
 			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="/home"><i class="fa fa-home"></i> Home</a></li>
+					<li><a href="/addtask"><i class="fa fa-plus"></i> Add Task</a></li>   
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a>{{ user_mail }}</a></li>
+					<li><a href="{{ logout }}"><i class="fa fa-sign-out"></i> Logout</a></li>
+				</ul>
+			</div><!--/.nav-collapse -->
 		</div>
 	</div>
-	</div>
-	{% endfor %}
-	</ol>
 
-	<ul id="uldone">
-	{% for task in done_query %}
-	<div class="taskpanels">
+	<div class="container" id="maincontainer">
 
-	<div class="panel panel-success">
+		<!-- heading -->
 
+		<h1>Things to do</h1>
 
-		<div class="panel-heading">
-    		<li class="homepanel" id="lidone"><h3 class="panel-title pt1" style="font-size:1.2em">✔&nbsp;&nbsp;&nbsp;{{ task.title }}</h3></li>
-  		</div>
+		<!-- how many things to do -->
+		<h4 id="howmany">You have {{ agenda.count() }} {% if agenda.count() == 1 %}task{% else %}tasks{% endif %}.</h4>
 
-  		<div class="panel-body">
+		<!-- if no tasks -->
 
-  			<h4>
-  				Done
-			</h4> 
-			<br/>
-			<h4>{{ task.description }}</h4>
-
-			<div class="optionbtns2">
-				<form action="/notdone" method="post">
-					<input type="hidden" value="{{ task.task_id }}" name="id_notdone"/>
-					<input type="submit" value="Not Done" class="btn btn-primary btn-sm"/>
-				</form>
-
-				<form onsubmit="return ConfirmDelete()" action="/delete" method="post">
-					<input type="hidden" value="{{ task.task_id }}" name="id_to_delete"/>
-					<input type="submit" value="Delete" class="btn btn-default btn-sm"/>
-				</form>
-
-			</div>
+		{% if agenda.count() == 0 and done_query.count() == 0 %}
+		<div id="plusdiv">
+			<a href="/addtask" id="plus">+</a>
+			<p>Get started</p>
 		</div>
-	</div>
-	</div>
-	{% endfor %}
-	</ul>
-	
+		{% else %}
+
+		<!-- otherwise button to show and hide details -->
+
+		<button id="collapse-init" class="btn btn-primary">
+			See details
+		</button>
+		{% endif %}
+
+		<!--Things to do -->
+
+
+		{% for task in agenda %}
+		<!-- panel group -->
+		<div class="taskpanels panel-group" class="accordion" id="accordion1">
+
+			<!-- panel -->
+			<div class="panel {% if task.priority == 1 %}panel-danger{% elif task.priority == 2 %}panel-warning{% else %}panel-info{% endif %}">
+
+				<div class="myanchor">
+					<span id="panel{{ loop.index }}"></span>
+				</div>
+
+				<!-- panel heading -->
+
+				<div class="panel-heading homepanel" {% if task.priority == 2 %}style="color: black"{% endif %}>
+
+					<a data-toggle="collapse" data-target="#collapse{{ loop.index }}" href="#panel{{ loop.index }}">
+
+						<script type="text/javascript">
+						$(function () {
+
+							$('#collapse{{ loop.index }}').on('show.bs.collapse', function () {
+
+								$('#iconnum{{ loop.index }}').removeClass('fa-chevron-circle-right').addClass('fa-chevron-circle-down');
+							});
+
+							$('#collapse{{ loop.index }}').on('hide.bs.collapse', function () {
+
+								$('#iconnum{{ loop.index }}').removeClass('fa-chevron-circle-down').addClass('fa-chevron-circle-right');
+							});
+
+						});
+						</script>
+						<!-- panel title -->
+						<h3 class="panel-title pt1" style="{% if task.priority == 2 %}color: black;{% endif %}font-size:1.2em">
+
+							{{ loop.index }}. {{ task.title }}{% if task.due_date and today > task.due_date %}&nbsp;&nbsp;&nbsp;&nbsp;( Overdue! ){% endif %}
+
+						</h3>
+
+						<!-- icon -->
+
+						<i id="iconnum{{ loop.index }}" class="icon1 fa fa-chevron-circle-right"></i>						
+					</a>
+
+				</div>  <!-- end panel heading -->
+
+				<!-- panel collapse -->
+
+				<div id="collapse{{ loop.index }}" class="panel-collapse collapse">
+
+					<!-- panel body -->
+					<div class="panel-body">
+
+						<h4>
+							<span class="desclabel">Priority:</span>
+
+							{% if task.priority == 1 %} High {% elif task.priority == 2 %} Medium {% else %} Low {% endif %}
+						</h4> <br>
+						<!--<span class="prewrap"><h4>{{ task.description }}</h4></span><br>-->
+
+						{% if task.description != '' %}
+						<pre><h4>{{ task.description }}</h4></pre><br>
+						{% endif %}
+
+						{% if task.due_date %}
+						<h4><span class="desclabel">Due <i class="fa fa-calendar"></i> : </span> {{ task.due_date.strftime('%d %b %Y') }}</h4>
+
+							{% if today > task.due_date %}
+							<h4>Overdue!</h4>
+							{% endif %}
+
+						{% endif %}
+
+						<div class="optionbtns2">
+
+							<form action="/edit" method="get">
+								<input type="hidden" value="{{ task.task_id }}" name="id_to_edit"/>
+								<input type="submit" value="Edit" class="btn btn-primary btn-sm"/>
+							</form>
+
+							<form onsubmit="return ConfirmDelete()" action="/delete" method="post">
+								<input type="hidden" value="{{ task.task_id }}" name="id_to_delete"/>
+								<input type="submit" value="Delete" class="btn btn-default btn-sm"/>
+							</form>
+
+							<form action="/done" method="post">
+								<input type="hidden" value="{{ task.task_id }}" name="id_done"/>
+								<input type="submit" value="Done" class="btn btn-success btn-sm"/>
+							</form>
+						</div>
+					</div> <!-- end panel body -->
+				</div> <!-- end panel collapse -->
+			</div> <!-- end panel -->
+		</div> <!-- end panel group -->
+		<br>
+		{% endfor %}
+
+		<!-- tasks that are already done -->
+
+		{% for task in done_query %}
+
+		<!-- panel group -->
+
+		<div class="taskpanels panel-group" class="accordion" id="accordion2">
+			<!-- panel -->
+			<div class="panel panel-success">
+
+				<div class="myanchor">
+					<span id="paneldone{{ loop.index }}"></span>
+				</div>
+
+				<!-- panel heading -->
+				<div class="panel-heading homepanel">
+
+					<a data-toggle="collapse" data-target="#collapsedone{{ loop.index }}" href="#paneldone{{ loop.index }}">
+
+						<script type="text/javascript">
+						$(function () {
+
+							$('#collapsedone{{ loop.index }}').on('show.bs.collapse', function () {
+
+								$('#iconnumd{{ loop.index }}').removeClass('fa-chevron-circle-right').addClass('fa-chevron-circle-down');
+							});
+
+							$('#collapsedone{{ loop.index }}').on('hide.bs.collapse', function () {
+
+								$('#iconnumd{{ loop.index }}').removeClass('fa-chevron-circle-down').addClass('fa-chevron-circle-right');
+							});
+
+						});
+						</script>
+
+						<!-- panel title -->
+						<h3 class="panel-title pt1" style="font-size:1.2em"><i class="fa fa-check-square-o"></i>&nbsp;&nbsp;{{ task.title }}</h3>
+						<!-- icon -->
+
+						<i id="iconnumd{{ loop.index }}" class="icon1 fa fa-chevron-circle-right"></i>
+					</a>
+				</div> <!-- end panel heading -->
+
+				<!-- panel collapse -->
+
+				<div id="collapsedone{{ loop.index }}" class="panel-collapse collapse">
+					<!-- panel body -->
+					<div class="panel-body">
+
+						<h4>
+							Done
+						</h4> 
+						
+						<!--<span class="prewrap"><h4>{{ task.description }}</h4></span>-->
+
+						{% if task.description != '' %}
+						<pre><h4>{{ task.description }}</h4></pre>
+						{% endif %}
+
+						<div class="optionbtns2">
+							<form action="/notdone" method="post">
+								<input type="hidden" value="{{ task.task_id }}" name="id_notdone"/>
+								<input type="submit" value="Not Done" class="btn btn-primary btn-sm"/>
+							</form>
+
+							<form onsubmit="return ConfirmDelete()" action="/delete" method="post">
+								<input type="hidden" value="{{ task.task_id }}" name="id_to_delete"/>
+								<input type="submit" value="Delete" class="btn btn-default btn-sm"/>
+							</form>
+
+						</div>
+					</div> <!-- end panel body -->
+				</div> <!-- end panel collapse -->
+			</div> <!-- end panel -->
+		</div> <!-- end panel group -->
+		<br>
+		{% endfor %}
 
 
 
-    </div><!-- /.container -->
 
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="../bootstrap/js/bootstrap.min.js"></script>
+
+	</div><!-- end container -->
+
+	<footer>
+		<strong>Priority:</strong> <div class="footer-legend" id="flhigh"></div> High&nbsp;&nbsp;&nbsp;&nbsp;<div class="footer-legend" id="flmedium"></div> Medium&nbsp;&nbsp;&nbsp;&nbsp;<div class="footer-legend" id="fllow"></div> Low&nbsp;&nbsp;&nbsp;&nbsp;<div class="footer-legend" id="fldone"></div> Done
+	</footer>
 
 </body>
 </html>
+
