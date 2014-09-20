@@ -1,6 +1,6 @@
-What-to-do
+PendingWorx
 ==========
 
 To do list application
 
-http://what-2-do.appspot.com/
+http://pendingworx.appspot.com/
