@@ -1,62 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap 101 Template</title>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PendingWorx</title>
 
-    <!-- Bootstrap -->
-    <link href="../journal/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap -->
+  <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="../stylesheets/mysheet2.css" />
+  <link rel="stylesheet" type="text/css" href="../images/bootstrap-social-gh-pages/bootstrap-social.css" />
+ <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css" />
+ <link href='http://fonts.googleapis.com/css?family=Montserrat+Alternates' rel='stylesheet' type='text/css'>
 
-  </head>
-  <body>
-    <h1>Hello, world!</h1>
-    <p>To do list</p>
-	<a href="/home">Login</a>
+</head>
+<body>
+<h1>PendingWorx <i class="fa fa-pencil"></i></h1>
+<h3>Your one-stop destination for managing tasks</h3>
+  <div id="image-carousel">
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="4"></li>
+        
+      </ol>
 
-	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-	  <!-- Indicators -->
-	  <ol class="carousel-indicators">
-	    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-	    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-	    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-	  </ol>
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner">
+        <div class="item active">
+          <img src="../images/1.png" width="700px" height="400px" alt="...">
+          <div class="carousel-caption">
+            one
+          </div>
+        </div>
+        <div class="item">
+          <img src="../images/2.png" width="700px" height="400px" alt="...">
+          <div class="carousel-caption">
+            two
+          </div>
+        </div>
+        
+        <div class="item">
+          <img src="../images/4.png" width="700px" height="400px" alt="...">
+          <div class="carousel-caption">
+            four
+          </div>
+        </div>
 
-	  <!-- Wrapper for slides -->
-	  <div class="carousel-inner">
-	    <div class="item active">
-	      <img src="http://designsold.com/wp-content/uploads/2013/12/Quotes-about-time.jpg" height="300px" width="500px" alt="...">
-	      <div class="carousel-caption">
-	        1
-	      </div>
-	    </div>
-	    <div class="item">
-	      <img src="http://www.verybestquotes.com/wp-content/uploads/2013/04/spending-time-quotes-The-way-we-spend-our-time-defines-who-we-are..jpg" height="300px" width="500px" alt="...">
-	      <div class="carousel-caption">
-	        2
-	      </div>
-	    </div>
-	    <div class="item">
-	      <img src="http://www.youmotivation.com/wp-content/uploads/2014/11/Picture-Quote-By-Rande-Wilson-The-elevator-to-success-is-out-of-order.-You%E2%80%99ll-have-to-use-the-stairs%E2%80%A6.-One-step-at-a-time..jpg" height="300px" width="500px" alt="...">
-	      <div class="carousel-caption">
-	        3
-	      </div>
-	    </div>
-	  </div>
+        <div class="item">
+          <img src="../images/5.png" width="700px" height="400px" alt="...">
+          <div class="carousel-caption">
+            five
+          </div>
+        </div>
 
-	  <!-- Controls -->
-	  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-	    <span class="glyphicon glyphicon-chevron-left"></span>
-	  </a>
-	  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-	    <span class="glyphicon glyphicon-chevron-right"></span>
-	  </a>
-	</div>
+        <div class="item">
+          <img src="../images/6.png" width="700px" height="400px" alt="...">
+          <div class="carousel-caption">
+            six
+          </div>
+        </div>
+        
+      </div>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="../bootstrap/js/bootstrap.min.js"></script>
-  </body>
+      <!-- Controls -->
+      <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+      </a>
+      <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+      </a>
+    </div>
+  </div>
+<br>
+  <p>Enter all the tasks you have in mind. State their priorities and due dates, if any. Overdue tasks are automatically labelled. Access your to-do list from anywhere you want and never forget a task again.</p>
+  <p>Keeping track of your schedule is hard enough. Get relief from the burden of remembering another username and password for PendingWorx. Login with your existing Google account now.</p>
+  <br>
+<br>
+
+  <div class="login">
+    <a class="btn btn-block btn-social btn-google-plus" href="/home">
+      <i class="fa fa-google-plus"></i> Sign in with Google
+    </a>
+  </div>
+<!--
+  <div class="login">
+    <a class="btn btn-block btn-social btn-facebook" href="/home">
+      <i class="fa fa-facebook"></i> Sign in with Facebook
+    </a>
+  </div>
+-->
+  
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="../bootstrap/js/bootstrap.min.js"></script>
+</body>
 </html>
